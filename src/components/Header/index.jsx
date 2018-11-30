@@ -6,9 +6,8 @@ import shortTitle from 'utils/shortTitle'
 import ArrowBack from 'mdi-react/ArrowBackIcon'
 import MenuIcon from 'mdi-react/MenuIcon'
 import { Link } from 'react-router-dom'
-import { AppBar, IconButton, Toolbar, Typography, withStyles } from '@material-ui/core'
+import { AppBar, Button, IconButton, Toolbar, Typography, withStyles } from '@material-ui/core'
 import connector from './connector'
-
 
 const styles = theme => ({
   root: {
@@ -42,7 +41,6 @@ class Header extends React.Component {
     return history.goBack()
   }
 
-
   renderIcon = () => {
     const { header } = this.props
     if (header.icon === 'back') {
@@ -74,9 +72,11 @@ class Header extends React.Component {
               {this.renderIcon()}
             </div>
 
-            <Typography variant="title" color="inherit" className={classes.title}>
+            <Typography variant="title" color="secondary" className={classes.title}>
               <Link to={header.link}>{shortTitle(header.title)}</Link>
             </Typography>
+
+            <Link to="/trends"><Button color="secondary">Trends</Button></Link>
 
           </Toolbar>
         </AppBar>
