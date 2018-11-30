@@ -10,6 +10,7 @@ import PlacesLayout from './@places/PlacesLayout'
 import SignedInRoute from './routes/SignedInRoute'
 import SignedOutRoute from './routes/SignedOutRoute'
 import Background from './Background'
+import ArticleViewer from './ArticleViewer'
 
 const LayoutScene = () =>
   <Background>
@@ -17,6 +18,7 @@ const LayoutScene = () =>
     <Container>
       <Switch>
         <Route exact path="/" component={IndexScene} />
+        <Route path="/article/:id" component={ArticleViewer} />
         <SignedOutRoute path="/auth" component={AuthLayout} />
         <SignedInRoute path="/places" component={PlacesLayout} />
       </Switch>
