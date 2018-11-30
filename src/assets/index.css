@@ -41,13 +41,14 @@ a {
 }
 
 .mark {
-    background: #c7e1ff;
-    padding: 4px 8px;
+    background: #6295ff;
+    color: #fff;
+    padding: 3px 12px;
     border-radius: 16px;
 }
 
 .mark:hover {
     cursor: pointer;
     color: #fff;
-    background: #7b9fd5;
+    background: #76b3ff;
 }
