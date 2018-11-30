@@ -4,7 +4,7 @@ import withTheme from 'utils/withTheme'
 import Header from 'components/Header'
 import Container from 'components/Container'
 import IndexScene from './IndexScene/IndexScene'
-import TrandsScene from './@trends/TrendsScene'
+import TrendsScene from './@trends/TrendsScene'
 import Background from './Background'
 
 const LayoutScene = () =>
@@ -13,7 +13,7 @@ const LayoutScene = () =>
     <Container>
       <Switch>
         <Route exact path="/" component={IndexScene} />
-        <Route path="/trends" component={TrandsScene} />
+        <Route path="/trends" component={TrendsScene} />
       </Switch>
     </Container>
   </Background>
