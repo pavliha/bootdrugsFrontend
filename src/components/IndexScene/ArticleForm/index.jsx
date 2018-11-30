@@ -3,8 +3,10 @@ import { Button, withStyles } from '@material-ui/core'
 import { object, bool } from 'prop-types'
 import { Field, Form } from 'formik'
 import TextEditor from 'components/formik/TextEditor'
+import { withRouter } from 'react-router-dom'
 import formik from './formik'
 import connector from './connector'
+import Typography from '@material-ui/core/Typography/Typography'
 
 const styles = {
   root: {
@@ -18,9 +20,18 @@ const styles = {
   actions: {
     marginTop: 20,
   },
+  errorContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  errorMessage: {
+    padding: '0 20px',
+    alignSelf: 'center',
+  },
+
 }
 
-const ArticleForm = ({ classes, isSubmitting }) => (
+const ArticleForm = ({ classes, errors, isSubmitting }) => (
   <Form className={classes.root}>
     <Field
       label="Статья"
@@ -42,12 +53,22 @@ const ArticleForm = ({ classes, isSubmitting }) => (
       </Button>
     </div>
 
+    <div className={classes.errorContainer}>
+      {errors.server
+      && (
+        <Typography align="right" color="error" className={classes.errorMessage}>
+          {errors.server}
+        </Typography>
+      )
+      }
+    </div>
   </Form>
 )
 
 ArticleForm.propTypes = {
   classes: object.isRequired,
   isSubmitting: bool.isRequired,
+  errors: object.isRequired,
 }
 
-export default withStyles(styles)(connector(formik(ArticleForm)))
+export default withStyles(styles)(withRouter(connector(formik(ArticleForm))))

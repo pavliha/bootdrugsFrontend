@@ -1,5 +1,6 @@
 import { withFormik } from 'formik'
 import * as Yup from 'yup'
+import to from 'util-to'
 
 const formik = withFormik({
   enableReinitialize: true,
@@ -14,10 +15,17 @@ const formik = withFormik({
     text: '',
   }),
 
-  handleSubmit: (values, { props }) => {
-    const { value: article } = props.actions.article.create(values.text)
+  handleSubmit: async (values, { props, setSubmitting, setErrors }) => {
+    const [err, response] = await to(props.actions.article.create(values))
 
-    props.history.push(`/article/${article._id || 'dummy'}`)
+    if (err) {
+      setSubmitting(false)
+      setErrors({ server: 'Server failed to respond' })
+      return false
+    }
+
+    props.history.push(`/article/${response.value._id || 'dummy'}`)
+    return true
   },
   displayName: 'CreateArticle',
 })
