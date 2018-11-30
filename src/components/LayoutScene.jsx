@@ -4,9 +4,9 @@ import withTheme from 'utils/withTheme'
 import Header from 'components/Header'
 import Container from 'components/Container'
 import IndexScene from './IndexScene/IndexScene'
-import TrandsScene from './@trends/TrendsScene'
+import TrendsScene from './@trends/TrendsScene'
 import Background from './Background'
-import ArticleViewer from './ArticleViewer'
+import ArticleScene from './@article/@id/ArticleScene'
 
 const LayoutScene = () =>
   <Background>
@@ -14,8 +14,8 @@ const LayoutScene = () =>
     <Container>
       <Switch>
         <Route exact path="/" component={IndexScene} />
-        <Route path="/article/:id" component={ArticleViewer} />
-        <Route path="/trends" component={TrandsScene} />
+        <Route path="/trends" component={TrendsScene} />
+        <Route path="/article/:id" component={ArticleScene} />
       </Switch>
     </Container>
   </Background>
