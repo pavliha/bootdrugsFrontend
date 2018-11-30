@@ -23,7 +23,7 @@ const KeywordCard = ({ classes, title, avatar, description }) =>
       title={title}
     />}
     <CardContent>
-      <Typography gutterBottom variant="subheading" component="h5">
+      <Typography gutterBottom variant="subheading" component="h5" color="primary">
         {title}
       </Typography>
       <Typography component="p">
