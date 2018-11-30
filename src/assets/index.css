@@ -39,3 +39,15 @@ a {
 #root > div {
     height: 100%;
 }
+
+.mark {
+    background: #c7e1ff;
+    padding: 4px 8px;
+    border-radius: 16px;
+}
+
+.mark:hover {
+    cursor: pointer;
+    color: #fff;
+    background: #7b9fd5;
+}

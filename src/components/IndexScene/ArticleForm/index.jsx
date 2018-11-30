@@ -1,12 +1,11 @@
 import React from 'react'
-import { Button, withStyles } from '@material-ui/core'
+import { Button, withStyles, Typography } from '@material-ui/core'
 import { object, bool } from 'prop-types'
 import { Field, Form } from 'formik'
 import TextEditor from 'components/formik/TextEditor'
 import { withRouter } from 'react-router-dom'
 import formik from './formik'
 import connector from './connector'
-import Typography from '@material-ui/core/Typography/Typography'
 
 const styles = {
   root: {
