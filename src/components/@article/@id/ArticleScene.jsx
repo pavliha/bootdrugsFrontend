@@ -45,13 +45,13 @@ class ArticleScene extends React.Component {
           </CardContent>
         </Card>
         <div className={classes.cards}>
-          {article.keywords.map(keyword =>
+          {article.keywords.map((keyword, index) =>
             <KeywordCard
+              key={index}
               title={keyword.title}
               avatar={keyword.avatar}
               description={keyword.description}
-            />,
-          )}
+            />)}
         </div>
       </div>
     )

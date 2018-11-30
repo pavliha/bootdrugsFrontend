@@ -16,11 +16,12 @@ const styles = {
 
 const KeywordCard = ({ classes, title, avatar, description }) =>
   <Card className={classes.root}>
+    {avatar &&
     <CardMedia
       className={classes.media}
       image={avatar}
       title={title}
-    />
+    />}
     <CardContent>
       <Typography gutterBottom variant="subheading" component="h5">
         {title}
