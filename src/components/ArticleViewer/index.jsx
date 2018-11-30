@@ -4,14 +4,29 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Card from '@material-ui/core/es/Card/Card'
 import CardContent from '@material-ui/core/es/CardContent/CardContent'
 import Typography from '@material-ui/core/es/Typography/Typography'
+import Paper from '@material-ui/core/es/Paper/Paper'
+import Avatar from '@material-ui/core/es/Avatar/Avatar'
 import articleRes from './text.json'
 
 const styles = {
   card: {
-    margin: 30,
+    margin: 15,
   },
   title: {
-    marginBottom: 15,
+    marginTop: 10,
+  },
+  header: {
+    margin: '15px 15px 0 15px',
+    padding: 15,
+    background: '#2786ff',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 150,
+    height: 150,
   },
 }
 
@@ -22,9 +37,9 @@ class ArticleViewer extends React.Component {
 
   componentWillMount() {
     const newArticle = Object.assign({}, articleRes)
-    newArticle.keywords.forEach((keyword, index) => {
-      const key = Object.keys(keyword).toString()
-      newArticle.text = newArticle.text.replace(key[index], `<span class="mark">${key[index]}</span>`)
+    newArticle.keywords.forEach((keyword) => {
+      const key = Object.keys(keyword)[0]
+      newArticle.text = newArticle.text.replace(new RegExp(key, 'g'), `<span class="mark">${key}</span>`)
     })
     this.setState({ article: newArticle })
   }
@@ -34,12 +49,16 @@ class ArticleViewer extends React.Component {
     const { article } = this.state
     return (
       <Card className={classes.card}>
-        <CardContent>
-          <Typography gutterBottom variant="title" component="h2" className={classes.title}>
+        <Paper className={classes.header} style={{ background: article.image }}>
+          <Avatar alt="Article image" src={article.image} className={classes.image} />
+          <Typography component="h2" variant="h1" className={classes.title} color="secondary">
             {article.title}
           </Typography>
+        </Paper>
+        <CardContent>
           <Typography
             component="p"
+            style={{ lineHeight: '1.5' }}
             dangerouslySetInnerHTML={{ __html: article.text }}
           />
         </CardContent>
