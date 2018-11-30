@@ -5,7 +5,7 @@ import {
 } from './action'
 
 const initialState = {
-  title: 'Partymaker',
+  title: 'Article Analyzer',
   link: '/',
   icon: 'menu',
   url: null,

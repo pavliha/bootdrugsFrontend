@@ -1,12 +1,14 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import modal from 'src/redux/modal/action'
+import article from 'src/redux/article/action'
 
-const initMapStateToProps = store => store.modalReducer
+const initMapStateToProps = store => ({
+  article: store.articleReducer,
+})
 
 const initMapDispatchToProps = dispatch => ({
   actions: {
-    modal: bindActionCreators(modal, dispatch),
+    article: bindActionCreators(article, dispatch),
   },
 })
 

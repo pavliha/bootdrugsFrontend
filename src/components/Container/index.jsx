@@ -1,10 +1,10 @@
 import React from 'react'
-import { object, string, node, shape } from 'prop-types'
+import { object, string, node } from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 
 const styles = theme => ({
   root: {
-    paddingTop: 55,
+    paddingTop: 65,
     height: '100%',
     width: '100%',
     [theme.breakpoints.up('md')]: {
