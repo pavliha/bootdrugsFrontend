@@ -8,7 +8,6 @@ import MenuIcon from 'mdi-react/MenuIcon'
 import { Link } from 'react-router-dom'
 import { AppBar, IconButton, Toolbar, Typography, withStyles } from '@material-ui/core'
 import connector from './connector'
-import UserMenu from './UserMenu'
 
 
 const styles = theme => ({
@@ -79,7 +78,6 @@ class Header extends React.Component {
               <Link to={header.link}>{shortTitle(header.title)}</Link>
             </Typography>
 
-            <UserMenu />
           </Toolbar>
         </AppBar>
       </header>
