@@ -15,7 +15,9 @@ const formik = withFormik({
   }),
 
   handleSubmit: (values, { props }) => {
-    props.actions.article.create(values.text)
+    const { value: article } = props.actions.article.create(values.text)
+
+    props.history.push(`/article/${article._id || 'dummy'}`)
   },
   displayName: 'CreateArticle',
 })

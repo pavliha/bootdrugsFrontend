@@ -1,6 +1,6 @@
 const urls = {
-  frontend: 'https://partymaker.zp.ua',
-  backend: 'https://api.partymaker.zp.ua',
+  frontend: 'https://analyzer.zp.ua',
+  backend: 'https://analyzer.zp.ua',
 
 }
 if (process.env.NODE_ENV === 'development') {

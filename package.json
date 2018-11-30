@@ -1,9 +1,9 @@
 {
-  "name": "partymaker",
+  "name": "maker",
   "sideEffects": false,
   "version": "0.1.0",
   "private": true,
-  "description": "Partymaker app",
+  "description": "Article Analyzer app",
   "engines": {
     "node": "*"
   },
