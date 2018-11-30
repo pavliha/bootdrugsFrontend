@@ -7,11 +7,14 @@ const formik = withFormik({
 
   validationSchema: Yup.object()
     .shape({
+      title: Yup.string()
+        .required('Это поле является обязательным'),
       text: Yup.string()
         .required('Это поле является обязательным'),
     }),
 
   mapPropsToValues: () => ({
+    title: '',
     text: '',
   }),
 

@@ -3,6 +3,7 @@ import { Button, withStyles, Typography } from '@material-ui/core'
 import { object, bool } from 'prop-types'
 import { Field, Form } from 'formik'
 import TextEditor from 'components/formik/TextEditor'
+import TextField from 'components/formik/TextField'
 import { withRouter } from 'react-router-dom'
 import formik from './formik'
 import connector from './connector'
@@ -33,6 +34,13 @@ const styles = {
 const ArticleForm = ({ classes, errors, isSubmitting }) => (
   <Form className={classes.root}>
     <Field
+      label="Заголовок"
+      name="title"
+      component={TextField}
+      placeholder="Вставьте заголовок для анализа"
+    />
+    <br />
+    <Field
       label="Статья"
       name="text"
       classes={{ input: classes.textField }}
@@ -44,6 +52,7 @@ const ArticleForm = ({ classes, errors, isSubmitting }) => (
       <Button
         size="large"
         type="submit"
+        style={{ color: 'white' }}
         color="primary"
         disabled={isSubmitting}
         variant="contained"
