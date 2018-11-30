@@ -5,6 +5,7 @@ import Header from 'components/Header'
 import Container from 'components/Container'
 import Modal from 'components/Modal'
 import IndexScene from './IndexScene/IndexScene'
+import TrandsScene from './@trends/TrendsScene'
 import PlacesLayout from './@places/PlacesLayout'
 import Background from './Background'
 
@@ -14,6 +15,7 @@ const LayoutScene = () =>
     <Container>
       <Switch>
         <Route exact path="/" component={IndexScene} />
+        <Route path="/trends" component={TrandsScene} />
         <Route path="/places" component={PlacesLayout} />
       </Switch>
     </Container>

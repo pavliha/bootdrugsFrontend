@@ -1,9 +1,10 @@
 import React from 'react'
-import { Button, withStyles } from '@material-ui/core'
+import { withStyles } from '@material-ui/core'
 import { object } from 'prop-types'
-import { Link } from 'react-router-dom'
+import TextEditor from 'components/formik/TextEditor'
+import { Field } from 'formik'
 import connector from './connector'
-import BannerJumbotron from './Jumbotron'
+import formik from '../@places/PlaceForm/formik'
 
 const styles = {
   root: {
@@ -38,31 +39,12 @@ class IndexScene extends React.Component {
     const { classes } = this.props
     return (
       <div className={classes.root}>
-        <BannerJumbotron />
-        <div>
-          <Link to="/places/create">
-            <Button
-              className={classes.button}
-              fullWidth
-              variant="contained"
-              size="large"
-              color="primary"
-            >
-              Добавить место
-            </Button>
-          </Link>
-          <Link to="/places">
-            <Button
-              className={classes.button}
-              fullWidth
-              variant="contained"
-              size="large"
-              color="primary"
-            >
-             Смотреть список мест
-            </Button>
-          </Link>
-        </div>
+        <Field
+          label="Описание"
+          name="description"
+          component={TextEditor}
+          placeholder="Описание места"
+        />
       </div>
     )
   }
@@ -73,4 +55,4 @@ IndexScene.propTypes = {
   actions: object.isRequired,
 }
 
-export default withStyles(styles)(connector(IndexScene))
+export default withStyles(styles)(connector(formik(IndexScene)))
