@@ -4,7 +4,7 @@ const urls = {
 
 }
 if (process.env.NODE_ENV === 'development') {
-  urls.backend = 'http://localhost:3333'
+  urls.backend = 'http://192.168.0.164:8172/api/v1'
   urls.frontend = 'http://localhost:2000'
 }
 
