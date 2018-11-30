@@ -8,7 +8,6 @@ import TextField from 'components/formik/TextField'
 import Geosuggest from 'components/formik/Geosuggest'
 import PictureUpload from 'components/formik/PictureUpload'
 import YoutubeUpload from 'components/formik/YoutubeUpload'
-import TextEditor from 'components/formik/TextEditor'
 import DetailsField from 'components/formik/DetailsField'
 
 import connector from './connector'
@@ -66,12 +65,6 @@ const CreatePlaceForm = ({ classes, place, isSubmitting }) =>
       name="videos"
     />
 
-    <Field
-      label="Описание"
-      name="description"
-      component={TextEditor}
-      placeholder="Описание места"
-    />
 
     <div className={classes.actions}>
       <Button
