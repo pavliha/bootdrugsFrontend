@@ -3,12 +3,9 @@ import React from 'react'
 import { object } from 'prop-types'
 import { withRouter } from 'react-router'
 import shortTitle from 'utils/shortTitle'
-import ArrowBack from 'mdi-react/ArrowBackIcon'
-import MenuIcon from 'mdi-react/MenuIcon'
 import { Link } from 'react-router-dom'
-import { AppBar, IconButton, Toolbar, Typography, withStyles } from '@material-ui/core'
+import { AppBar, Button, Toolbar, Typography, withStyles } from '@material-ui/core'
 import connector from './connector'
-
 
 const styles = theme => ({
   root: {
@@ -35,60 +32,27 @@ const styles = theme => ({
   },
 })
 
-class Header extends React.Component {
-  goBack = url => () => {
-    const { history } = this.props
-    if (url) return history.push(url)
-    return history.goBack()
-  }
+const Header = (props) => {
+  const { classes, header } = props
+  return (
+    <header className={classes.root}>
+      <AppBar className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
+          <Typography variant="title" color="secondary" className={classes.title}>
+            <Link to={header.link}>{shortTitle(header.title)}</Link>
+          </Typography>
 
+          <Link to="/trends"><Button color="secondary">Trends</Button></Link>
 
-  renderIcon = () => {
-    const { header } = this.props
-    if (header.icon === 'back') {
-      return (
-        <a onClick={this.goBack(header.url)}>
-          <IconButton color="inherit">
-            <ArrowBack />
-          </IconButton>
-        </a>
-      )
-    }
-
-    return (
-      <a>
-        <IconButton color="inherit">
-          <MenuIcon />
-        </IconButton>
-      </a>
-    )
-  }
-
-  render() {
-    const { classes, header } = this.props
-    return (
-      <header className={classes.root}>
-        <AppBar className={classes.appBar}>
-          <Toolbar className={classes.toolbar}>
-            <div className={classes.iconButton}>
-              {this.renderIcon()}
-            </div>
-
-            <Typography variant="title" color="inherit" className={classes.title}>
-              <Link to={header.link}>{shortTitle(header.title)}</Link>
-            </Typography>
-
-          </Toolbar>
-        </AppBar>
-      </header>
-    )
-  }
+        </Toolbar>
+      </AppBar>
+    </header>
+  )
 }
 
 Header.propTypes = {
   classes: object.isRequired,
   header: object.isRequired,
-  history: object.isRequired,
 }
 
 export default withStyles(styles)(connector(withRouter(Header)))
