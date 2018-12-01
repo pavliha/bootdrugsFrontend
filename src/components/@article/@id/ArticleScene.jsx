@@ -1,10 +1,8 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Card, CardContent, withStyles } from '@material-ui/core'
-import articleRes from './text.json'
-import Article from './Article'
-import KeywordCard from './KeywordCard'
-import Typography from '@material-ui/core/es/Typography/Typography'
+import { object } from 'prop-types'
+import { withStyles } from '@material-ui/core'
+import Scene from './Scene'
+import connector from './connector'
 
 const styles = {
   root: {
@@ -19,50 +17,27 @@ const styles = {
 }
 
 class ArticleScene extends React.Component {
-  state = {
-    article: {},
-  }
-
   componentWillMount() {
-    const newArticle = Object.assign({}, articleRes)
-    newArticle.keywords.forEach((keyword) => {
-      newArticle.text = newArticle.text.replace(
-        keyword.title,
-        `<span class="mark" onclick=alert("click")>${keyword.title}</span>`,
-      )
-    })
-    this.setState({ article: newArticle })
+    const { actions, articleReducer } = this.props
+    actions.article.find(articleReducer._id)
+    // actions.article.find('5c01d0606bbcc5155e03c4c6')
   }
 
   render() {
     const { classes } = this.props
-    const { article } = this.state
+
     return (
       <div className={classes.root}>
-        <Card className={classes.card}>
-          <CardContent>
-            <Article title={article.title}>{article.text}</Article>
-          </CardContent>
-        </Card>
-        <div className={classes.cards}>
-          <Typography variant="subheading" gutterBottom component="h3">
-            Ключевые слова в статье:
-          </Typography>
-          {article.keywords.map((keyword, index) =>
-            <KeywordCard
-              key={index}
-              title={keyword.title}
-              avatar={keyword.avatar}
-              description={keyword.description}
-            />)}
-        </div>
+        <Scene />
       </div>
     )
   }
 }
 
 ArticleScene.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: object.isRequired,
+  actions: object.isRequired,
+  articleReducer: object.isRequired,
 }
 
-export default withStyles(styles)(ArticleScene)
+export default withStyles(styles)(connector(ArticleScene))
