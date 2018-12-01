@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import layoutReducer from './layout/reducer'
 import headerReducer from './header/reducer'
 import articleReducer from './article/reducer'
+import trendsReducer from './trends/reducer'
 
 const persistConfig = {
   key: 'root',
@@ -13,6 +14,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   articleReducer,
+  trendsReducer,
   layoutReducer,
   headerReducer,
 })

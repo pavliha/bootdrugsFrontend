@@ -37,6 +37,7 @@ const articleReducer = (state = {}, { type, payload }) => {
     case FIND_ARTICLE_PENDING:
       return {
         ...state,
+        loaded: false,
         loading: true,
         loaded: false,
       }

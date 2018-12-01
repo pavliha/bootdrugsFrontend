@@ -1,65 +1,48 @@
-/* eslint-disable react/no-did-mount-set-state */
 import React from 'react'
+import { isEmpty } from 'lodash'
 import { object } from 'prop-types'
 import { Card, CardContent, Typography, withStyles } from '@material-ui/core'
+import Loading from 'components/Loading'
 import Article from './Article'
 import KeywordCard from './KeywordCard'
 import connector from '../connector'
 
 const styles = {
   root: {
+    margin: 30,
     display: 'flex',
-    minHeight: '100%',
   },
-  card: {
-    height: '100%',
-    overflow: 'auto',
-  },
+  card: {},
   cards: {
     minWidth: 300,
     marginLeft: 15,
-    height: '100%',
-    overflow: 'auto',
   },
 }
 
-class ArticlePage extends React.Component {
+class Scene extends React.Component {
   state = {
     article: {},
   }
 
-  componentDidMount() {
-    const { article, actions } = this.props
-
-    window.handleClick = (event) => {
-      actions.article.highlight(event.target.innerHTML)
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.articleReducer.loaded) {
+      const newArticle = Object.assign({}, nextProps.articleReducer.article)
+      nextProps.articleReducer.keywords.forEach((keyword) => {
+        newArticle.text = newArticle.text.replace(
+          keyword.original,
+          `<span class="mark" onclick=alert("click")>${keyword.original}</span>`,
+        )
+      })
+      return { article: newArticle }
     }
-
-    const newArticle = Object.assign({}, article.article)
-    article.keywords.forEach((keyword) => {
-      newArticle.text = newArticle.text.replace(
-        keyword.original,
-        `<span class="mark" onclick=handleClick(event)>${keyword.original}</span>`,
-      )
-    })
-
-    this.setState({ article: newArticle })
-  }
-
-  componentDidUpdate() {
-    const data = document.querySelector('[data-selected=true]')
-    const element = document.getElementById('card-list')
-
-    if (element && data) {
-      element.scrollTop = data.offsetTop - 200
-    }
+    return null
   }
 
   render() {
-    const { classes, article: baseArticle } = this.props
+    const { classes, articleReducer } = this.props
     const { article } = this.state
 
-    if (!article.text) return null
+    if (isEmpty(articleReducer) || articleReducer.loading) return <Loading />
 
     return (
       <div className={classes.root}>
@@ -68,14 +51,13 @@ class ArticlePage extends React.Component {
             <Article title={article.title}>{article.text}</Article>
           </CardContent>
         </Card>
-        <div className={classes.cards} id="card-list">
+        <div className={classes.cards}>
           <Typography variant="subheading" gutterBottom component="h3">
             Ключевые слова в статье:
           </Typography>
-          {baseArticle.keywords.map((keyword, index) =>
+          {articleReducer.keywords.map((keyword, index) =>
             <KeywordCard
               key={index}
-              selected={keyword.selected}
               title={keyword.title}
               avatar={keyword.avatar}
               description={keyword.description}
@@ -86,10 +68,9 @@ class ArticlePage extends React.Component {
   }
 }
 
-ArticlePage.propTypes = {
+Scene.propTypes = {
   classes: object.isRequired,
-  article: object.isRequired,
-  actions: object.isRequired,
+  articleReducer: object.isRequired,
 }
 
-export default withStyles(styles)(connector(ArticlePage))
+export default withStyles(styles)(connector(Scene))

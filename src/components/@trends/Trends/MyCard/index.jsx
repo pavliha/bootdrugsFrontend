@@ -1,8 +1,8 @@
 import React from 'react'
 import { object } from 'prop-types'
-import { Avatar, Card, CardContent, withStyles } from '@material-ui/core'
+import { Avatar, Button, Card, CardContent, Typography, withStyles } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 import shortDescriptions from 'utils/shortDescriptions'
-import Typography from '@material-ui/core/es/Typography/Typography'
 
 const styles = () => ({
   root: {
@@ -10,8 +10,8 @@ const styles = () => ({
     margin: 20,
   },
   media: {
-    width: 280,
-    height: 280,
+    width: 250,
+    height: 250,
     borderRadius: 0,
   },
   title: {
@@ -24,13 +24,14 @@ const Trends = ({ classes, trend }) =>
   <Card className={classes.root}>
     <Avatar
       className={classes.media}
-      src={trend.image}
+      src={trend.picture}
     />
     <div>
       <Typography variant="title" className={classes.title}>{trend.title}</Typography>
       <CardContent>
-        {shortDescriptions(trend.description)}
+        {shortDescriptions(trend.extract)}
       </CardContent>
+      <Link to={`trends/${trend._id}`}><Button color="primary">Подробнее</Button></Link>
     </div>
   </Card>
 
