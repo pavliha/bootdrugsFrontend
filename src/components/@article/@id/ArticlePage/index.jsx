@@ -89,7 +89,7 @@ class ArticlePage extends React.Component {
               key={index}
               selected={keyword.selected}
               title={keyword.title}
-              avatar={keyword.avatar}
+              picture={keyword.picture}
               description={keyword.description}
             />)}
         </div>

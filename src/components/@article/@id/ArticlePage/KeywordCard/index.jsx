@@ -17,14 +17,17 @@ const styles = {
   selected: {
     background: 'rgba(0,0,0,0.1)',
   },
+  media: {
+    height: 200,
+  },
 }
 
-const KeywordCard = ({ classes, title, avatar, description, selected }) =>
+const KeywordCard = ({ classes, title, picture, description, selected }) =>
   <Card className={classNames({ [classes.root]: true, [classes.selected]: selected })} data-selected={selected}>
-    {avatar &&
+    {picture &&
     <CardMedia
       className={classes.media}
-      image={avatar}
+      image={picture}
       title={title}
     />}
     <CardContent>
@@ -40,13 +43,13 @@ const KeywordCard = ({ classes, title, avatar, description, selected }) =>
 KeywordCard.propTypes = {
   classes: object.isRequired,
   title: string.isRequired,
-  avatar: string,
+  picture: string,
   description: node,
   selected: bool,
 }
 KeywordCard.defaultProps = {
   selected: false,
-  avatar: null,
+  picture: null,
   description: null,
 }
 
