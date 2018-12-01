@@ -1,6 +1,8 @@
 import React from 'react'
 import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
+import Loading from 'components/Loading'
+import isEmpty from 'lodash/isEmpty'
 import Trend from './Trend'
 import connector from './connector'
 
@@ -15,11 +17,13 @@ class TrendsScene extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, keyword } = this.props
+
+    if (isEmpty(keyword) || keyword.loading) return <Loading />
 
     return (
       <div className={classes.root}>
-        <Trend />
+        <Trend keyword={keyword.keyword} />
       </div>
     )
   }
@@ -29,6 +33,7 @@ TrendsScene.propTypes = {
   classes: object.isRequired,
   actions: object.isRequired,
   match: object.isRequired,
+  keyword: object.isRequired,
 }
 
 export default withStyles(styles)(connector(TrendsScene))

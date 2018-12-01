@@ -1,3 +1,5 @@
+import { SEARCH_KEYWORD_FULFILLED } from 'src/redux/keyword/action'
+
 import {
   CREATE_ARTICLE_FULFILLED,
   CREATE_ARTICLE_PENDING,
@@ -10,7 +12,15 @@ import {
 
 const articleReducer = (state = {}, { type, payload }) => {
   switch (type) {
+    case SEARCH_KEYWORD_FULFILLED: {
+      const keywords = [...state.keywords]
+      keywords.push(payload.keyword[0])
 
+      return {
+        ...state,
+        keywords: keywords.sort((a, b) => b.createdAt - a.createdAt),
+      }
+    }
     case HIGHLIGHT_ARTICLE: {
       return {
         ...state,

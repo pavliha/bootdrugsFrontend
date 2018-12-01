@@ -3,11 +3,12 @@ import { Route, Switch } from 'react-router-dom'
 import withTheme from 'utils/withTheme'
 import Header from 'components/Header'
 import Container from 'components/Container'
-import Background from 'components/Background'
-import IndexScene from 'components/IndexScene/IndexScene'
-import TrendsScene from 'components/@trends/TrendsScene'
-import ArticleScene from 'components/@article/@id/ArticleScene'
 import TrendScene from 'components/@keyword/@id/TrendScene'
+import AnalyzeScene from 'components/@analyze/AnalyzeScene'
+import IndexScene from './IndexScene'
+import TrendsScene from './@trends/TrendsScene'
+import Background from './Background'
+import ArticleScene from './@article/@id/ArticleScene'
 
 const LayoutScene = () =>
   <Background>
@@ -15,6 +16,7 @@ const LayoutScene = () =>
     <Container>
       <Switch>
         <Route exact path="/" component={IndexScene} />
+        <Route exact path="/analyze" component={AnalyzeScene} />
         <Route path="/trends" component={TrendsScene} />
         <Route path="/article/:id" component={ArticleScene} />
         <Route path="/keyword/:id" component={TrendScene} />
