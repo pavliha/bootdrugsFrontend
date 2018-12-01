@@ -22,17 +22,19 @@ const styles = {
   },
 }
 
-const KeywordCard = ({ classes, title, picture, description, selected }) =>
+const KeywordCard = ({ classes, title, picture, wiki_url, description, selected }) =>
   <Card className={classNames({ [classes.root]: true, [classes.selected]: selected })} data-selected={selected}>
     {picture &&
-    <CardMedia
-      className={classes.media}
-      image={picture}
-      title={title}
-    />}
+    <a href={wiki_url}>
+      <CardMedia
+        className={classes.media}
+        image={picture}
+        title={title}
+      />
+    </a>}
     <CardContent>
       <Typography gutterBottom variant="subheading" component="h5" color="primary">
-        {title}
+        <a href={wiki_url}>{title}</a>
       </Typography>
       <Typography component="p">
         {description}
@@ -46,11 +48,13 @@ KeywordCard.propTypes = {
   picture: string,
   description: node,
   selected: bool,
+  wiki_url: null,
 }
 KeywordCard.defaultProps = {
   selected: false,
   picture: null,
   description: null,
+  wiki_url: null,
 }
 
 export default withStyles(styles)(KeywordCard)

@@ -87,6 +87,7 @@ class ArticlePage extends React.Component {
           {baseArticle.keywords.map((keyword, index) =>
             <KeywordCard
               key={index}
+              wiki_url={keyword.wiki_url}
               selected={keyword.selected}
               title={keyword.title}
               picture={keyword.picture}

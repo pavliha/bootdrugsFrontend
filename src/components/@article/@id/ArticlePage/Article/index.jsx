@@ -45,7 +45,7 @@ class Article extends Component {
         ...addKeyword,
         display: 'none',
       },
-    }), 1000)
+    }), 2000)
   }
 
   render() {
