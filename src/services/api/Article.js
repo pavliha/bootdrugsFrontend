@@ -3,8 +3,7 @@ import Http from 'services/Http'
 
 class Article {
   async create(form) {
-    const response = await Http.post('/analyzer', form)
-    return response.keywords
+    return Http.post('/analyzer', form)
   }
 }
 
