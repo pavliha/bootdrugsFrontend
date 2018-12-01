@@ -50,13 +50,17 @@ const image = '/images/default.png'
 
 const Trends = ({ classes, trend }) =>
   <Card className={classes.root}>
-    <Avatar
-      className={classes.media}
-      src={isEmpty(trend.picture) ? image : trend.picture}
-    />
+    <Link to={`/keyword/${trend._id}`}>
+      <Avatar
+        className={classes.media}
+        src={isEmpty(trend.picture) ? image : trend.picture}
+      />
+    </Link>
     <div className={classes.card}>
       <div className={classes.flex}>
-        <Typography variant="title" className={classes.title}>{trend.title}</Typography>
+        <Link to={`/keyword/${trend._id}`}>
+          <Typography variant="title" className={classes.title}>{trend.title}</Typography>
+        </Link>
         <div className={classes.circular}>
           <CircularProgressbar
             percentage={trend.percent}
