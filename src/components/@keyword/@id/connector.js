@@ -1,17 +1,14 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import place from 'src/redux/places/place/action'
-import places from 'src/redux/places/action'
+import keyword from '../../../redux/keyword/action'
 
 const initMapStateToProps = store => ({
-  place: store.placesReducer.current,
-  places: store.placesReducer,
+  keyword: store.keywordReducer,
 })
 
 const initMapDispatchToProps = dispatch => ({
   actions: {
-    place: bindActionCreators(place, dispatch),
-    places: bindActionCreators(places, dispatch),
+    keyword: bindActionCreators(keyword, dispatch),
   },
 })
 

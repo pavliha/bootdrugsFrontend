@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import trends from 'src/redux/trends/action'
+import trends from '../../redux/trends/action'
 
 const initMapStateToProps = store => ({
   trendsReducer: store.trendsReducer,
