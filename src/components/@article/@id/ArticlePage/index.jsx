@@ -1,7 +1,7 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React from 'react'
 import { object } from 'prop-types'
-import { Button, Card, CardContent, Typography, withStyles } from '@material-ui/core'
+import { Card, CardContent, Typography, withStyles } from '@material-ui/core'
 import Article from './Article'
 import KeywordCard from './KeywordCard'
 import connector from '../connector'
@@ -60,7 +60,8 @@ class ArticlePage extends React.Component {
     const { actions } = this.props
     let selected = null
     if (window.getSelection) {
-      selected = window.getSelection().toString()
+      selected = window.getSelection()
+        .toString()
     } else if (document.selection && document.selection.type !== 'Control') {
       selected = document.selection.createRange().text
     }
@@ -76,7 +77,7 @@ class ArticlePage extends React.Component {
       <div className={classes.root}>
         <Card className={classes.card}>
           <CardContent>
-            <Article title={article.title}>{article.text}</Article>
+            <Article onSelect={this.getSelectionText} title={article.title}>{article.text}</Article>
           </CardContent>
         </Card>
         <div className={classes.cards} id="card-list">
@@ -92,7 +93,6 @@ class ArticlePage extends React.Component {
               description={keyword.description}
             />)}
         </div>
-        <Button onClick={this.getSelectionText}>Add</Button>
       </div>
     )
   }

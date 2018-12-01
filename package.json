@@ -28,6 +28,7 @@
     "draft-js-import-html": "^1.2.1",
     "express": "^4.16.3",
     "formik": "^1.0.2-0",
+    "highlightable": "^1.0.7",
     "history": "latest",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.10",
