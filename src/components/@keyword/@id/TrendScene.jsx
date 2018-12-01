@@ -1,7 +1,7 @@
 import React from 'react'
 import { object } from 'prop-types'
 import { withStyles } from '@material-ui/core'
-// import Trends from './Trends'
+import Trend from './Trend'
 import connector from './connector'
 
 const styles = {
@@ -19,7 +19,7 @@ class TrendsScene extends React.Component {
 
     return (
       <div className={classes.root}>
-        {/*<Trend />*/}aa
+        <Trend />
       </div>
     )
   }
