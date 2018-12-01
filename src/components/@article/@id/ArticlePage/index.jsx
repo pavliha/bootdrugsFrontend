@@ -1,36 +1,45 @@
+/* eslint-disable react/no-did-mount-set-state */
 import React from 'react'
-import { isEmpty } from 'lodash'
 import { object } from 'prop-types'
 import { Card, CardContent, Typography, withStyles } from '@material-ui/core'
-import Loading from 'components/Loading'
 import Article from './Article'
 import KeywordCard from './KeywordCard'
 import connector from '../connector'
 
 const styles = {
   root: {
-    margin: 30,
     display: 'flex',
+    minHeight: '100%',
   },
-  card: {},
+  card: {
+    height: '100%',
+    overflow: 'auto',
+  },
   cards: {
     minWidth: 300,
     marginLeft: 15,
+    height: '100%',
+    overflow: 'auto',
   },
 }
 
-class Scene extends React.Component {
+class ArticlePage extends React.Component {
   state = {
     article: {},
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.articleReducer.loaded) {
-      const newArticle = Object.assign({}, nextProps.articleReducer.article)
-      nextProps.articleReducer.keywords.forEach((keyword) => {
+  static getDerivedStateFromProps(nextProps) {
+    const { article, actions } = nextProps
+    if (article.loaded) {
+      window.handleClick = (event) => {
+        actions.article.highlight(event.target.innerHTML)
+      }
+
+      const newArticle = Object.assign({}, article.article)
+      article.keywords.forEach((keyword) => {
         newArticle.text = newArticle.text.replace(
           keyword.original,
-          `<span class="mark" onclick=alert("click")>${keyword.original}</span>`,
+          `<span class="mark" onclick=handleClick(event)>${keyword.original}</span>`,
         )
       })
       return { article: newArticle }
@@ -38,11 +47,20 @@ class Scene extends React.Component {
     return null
   }
 
+  componentDidUpdate() {
+    const data = document.querySelector('[data-selected=true]')
+    const element = document.getElementById('card-list')
+
+    if (element && data) {
+      element.scrollTop = data.offsetTop - 200
+    }
+  }
+
   render() {
-    const { classes, articleReducer } = this.props
+    const { classes, article: baseArticle } = this.props
     const { article } = this.state
 
-    if (isEmpty(articleReducer) || articleReducer.loading) return <Loading />
+    if (!article.text) return null
 
     return (
       <div className={classes.root}>
@@ -51,13 +69,14 @@ class Scene extends React.Component {
             <Article title={article.title}>{article.text}</Article>
           </CardContent>
         </Card>
-        <div className={classes.cards}>
+        <div className={classes.cards} id="card-list">
           <Typography variant="subheading" gutterBottom component="h3">
             Ключевые слова в статье:
           </Typography>
-          {articleReducer.keywords.map((keyword, index) =>
+          {baseArticle.keywords.map((keyword, index) =>
             <KeywordCard
               key={index}
+              selected={keyword.selected}
               title={keyword.title}
               avatar={keyword.avatar}
               description={keyword.description}
@@ -68,9 +87,9 @@ class Scene extends React.Component {
   }
 }
 
-Scene.propTypes = {
+ArticlePage.propTypes = {
   classes: object.isRequired,
-  articleReducer: object.isRequired,
+  article: object.isRequired,
 }
 
-export default withStyles(styles)(connector(Scene))
+export default withStyles(styles)(connector(ArticlePage))

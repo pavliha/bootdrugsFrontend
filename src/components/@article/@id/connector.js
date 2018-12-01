@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import article from 'src/redux/article/action'
 
 const initMapStateToProps = store => ({
-  articleReducer: store.articleReducer,
+  article: store.articleReducer,
 })
 
 const initMapDispatchToProps = dispatch => ({

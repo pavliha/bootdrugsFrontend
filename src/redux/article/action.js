@@ -10,6 +10,8 @@ export const FIND_ARTICLE_PENDING = 'FIND_ARTICLE_PENDING'
 export const FIND_ARTICLE_REJECTED = 'FIND_ARTICLE_REJECTED'
 export const FIND_ARTICLE_FULFILLED = 'FIND_ARTICLE_FULFILLED'
 
+export const HIGHLIGHT_ARTICLE = 'HIGHLIGHT_ARTICLE'
+
 const create = form => ({
   type: CREATE_ARTICLE,
   payload: Article.create(form),
@@ -20,4 +22,9 @@ const find = id => ({
   payload: Article.find(id),
 })
 
-export default { create, find }
+const highlight = title => ({
+  type: HIGHLIGHT_ARTICLE,
+  payload: title,
+})
+
+export default { create, find, highlight }

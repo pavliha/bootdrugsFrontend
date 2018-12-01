@@ -1,14 +1,14 @@
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import trends from '../../redux/trends/action'
+import keyword from '../../../redux/keyword/action'
 
 const initMapStateToProps = store => ({
-  trendsReducer: store.trendsReducer,
+  keyword: store.keywordReducer,
 })
 
 const initMapDispatchToProps = dispatch => ({
   actions: {
-    trends: bindActionCreators(trends, dispatch),
+    keyword: bindActionCreators(keyword, dispatch),
   },
 })
 

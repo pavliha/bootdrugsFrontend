@@ -31,7 +31,7 @@ const Trends = ({ classes, trend }) =>
       <CardContent>
         {shortDescriptions(trend.extract)}
       </CardContent>
-      <Link to={`trends/${trend._id}`}><Button color="primary">Подробнее</Button></Link>
+      <Link to={`/keyword/${trend._id}`}><Button color="primary">Подробнее</Button></Link>
     </div>
   </Card>
 

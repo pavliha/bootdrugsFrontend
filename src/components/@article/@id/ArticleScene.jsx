@@ -1,12 +1,16 @@
 import React from 'react'
+import { isEmpty } from 'lodash'
 import { object } from 'prop-types'
+import Loading from 'components/Loading'
 import { withStyles } from '@material-ui/core'
-import Scene from './Scene'
+import ArticlePage from './ArticlePage'
 import connector from './connector'
 
 const styles = {
   root: {
+    margin: 15,
     display: 'flex',
+    height: '94%',
   },
   card: {},
   cards: {
@@ -15,6 +19,7 @@ const styles = {
   },
 }
 
+
 class ArticleScene extends React.Component {
   componentDidMount() {
     const { actions, match } = this.props
@@ -22,11 +27,12 @@ class ArticleScene extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, article } = this.props
+
 
     return (
       <div className={classes.root}>
-        <Scene />
+        {(isEmpty(article) || article.loaded) ? <ArticlePage /> : <Loading />}
       </div>
     )
   }
@@ -35,6 +41,7 @@ class ArticleScene extends React.Component {
 ArticleScene.propTypes = {
   classes: object.isRequired,
   actions: object.isRequired,
+  article: object.isRequired,
   match: object.isRequired,
 }
 
