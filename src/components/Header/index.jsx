@@ -42,6 +42,8 @@ const Header = (props) => {
             <Link to={header.link}>{shortTitle(header.title)}</Link>
           </Typography>
 
+          <Link to="/analyze"><Button color="secondary">Analyze</Button></Link>
+          <Link to="/article"><Button color="secondary">Article</Button></Link>
           <Link to="/trends"><Button color="secondary">Trends</Button></Link>
 
         </Toolbar>

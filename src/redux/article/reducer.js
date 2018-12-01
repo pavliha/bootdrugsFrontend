@@ -4,8 +4,8 @@ import {
   CREATE_ARTICLE_FULFILLED,
   CREATE_ARTICLE_PENDING,
   CREATE_ARTICLE_REJECTED,
-  FIND_ARTICLE_PENDING,
   FIND_ARTICLE_FULFILLED,
+  FIND_ARTICLE_PENDING,
   FIND_ARTICLE_REJECTED,
   HIGHLIGHT_ARTICLE,
 } from './action'
@@ -43,6 +43,7 @@ const articleReducer = (state = {}, { type, payload }) => {
         loaded: true,
         ...payload,
       }
+
     case CREATE_ARTICLE_PENDING:
     case FIND_ARTICLE_PENDING:
       return {

@@ -2,6 +2,9 @@
 import Http from 'services/Http'
 
 class Article {
+  all() {
+    return Http.get('/article')
+  }
 
   find(_id) {
     return Http.get(`/article/${_id}`)
