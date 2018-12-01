@@ -48,7 +48,9 @@ const Cards = ({ classes, article }) =>
   <Card className={classes.root}>
     <div className={classes.card}>
       <div className={classes.flex}>
-        <Typography variant="title" className={classes.title}>{article.title}</Typography>
+        <Link to={`/article/${article._id}`}>
+          <Typography variant="title" className={classes.title}>{article.title}</Typography>
+        </Link>
       </div>
       <CardContent>
         <Typography
