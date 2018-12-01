@@ -17,8 +17,8 @@ const styles = {
 
 class ArticleScene extends React.Component {
   componentDidMount() {
-    const { actions, articleReducer } = this.props
-    actions.article.find(articleReducer._id)
+    const { actions, match } = this.props
+    actions.article.find(match.params.id)
   }
 
   render() {
@@ -35,7 +35,7 @@ class ArticleScene extends React.Component {
 ArticleScene.propTypes = {
   classes: object.isRequired,
   actions: object.isRequired,
-  articleReducer: object.isRequired,
+  match: object.isRequired,
 }
 
 export default withStyles(styles)(connector(ArticleScene))

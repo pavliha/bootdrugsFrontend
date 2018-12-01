@@ -1,7 +1,8 @@
 import React from 'react'
 import { object } from 'prop-types'
-import { Avatar, Card, CardContent, Typography, withStyles } from '@material-ui/core'
-import shortDescriptions from '../../../../utils/shortDescriptions'
+import { Avatar, Button, Card, CardContent, Typography, withStyles } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import shortDescriptions from 'utils/shortDescriptions'
 
 const styles = () => ({
   root: {
@@ -30,6 +31,7 @@ const Trends = ({ classes, trend }) =>
       <CardContent>
         {shortDescriptions(trend.extract)}
       </CardContent>
+      <Link to={`trends/${trend._id}`}><Button color="primary">Подробнее</Button></Link>
     </div>
   </Card>
 
