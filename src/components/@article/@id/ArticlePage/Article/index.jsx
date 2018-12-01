@@ -34,7 +34,7 @@ const Article = ({ classes, title, image, children }) =>
     </Paper>
     <Typography
       classes={classes}
-      style={{ lineHeight: 1.8 }}
+      style={{ lineHeight: 1.8, padding: 5 }}
       component="article"
       dangerouslySetInnerHTML={{ __html: children }}
     />

@@ -5,6 +5,10 @@ class Keyword {
   find(_id) {
     return Http.get(`/keyword/${_id}`)
   }
+
+  search(text) {
+    return Http.post('keyword', { text })
+  }
 }
 
 export default new Keyword()
