@@ -5,6 +5,8 @@ import truncate from 'lodash/truncate'
 
 const styles = {
   root: {
+    maxWidth: 960,
+    margin: '0 auto',
     display: 'flex',
     flexWrap: 'wrap',
   },

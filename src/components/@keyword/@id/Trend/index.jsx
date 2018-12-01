@@ -35,8 +35,8 @@ const Trend = ({ classes, keyword }) => (
       </div>
     </Card>
 
-    <Typography variant="subheading">Список всех статей:</Typography>
-    <ArticlesGrid articles={keyword.articles} />
+    <Typography variant="subheading" align="center">Список всех статей</Typography>
+    <ArticlesGrid articles={keyword.articals} />
   </div>
 )
 
