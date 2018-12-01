@@ -18,6 +18,10 @@ const styles = {
   },
 }
 
+window.handleClick = function (event) {
+  console.log(event.target.innerHTML)
+}
+
 class ArticleScene extends React.Component {
   state = {
     article: {},
@@ -28,7 +32,7 @@ class ArticleScene extends React.Component {
     newArticle.keywords.forEach((keyword) => {
       newArticle.text = newArticle.text.replace(
         keyword.title,
-        `<span class="mark" onclick=alert("click")>${keyword.title}</span>`,
+        `<span class="mark" onclick="handleClick(event)">${keyword.title}</span>`,
       )
     })
     this.setState({ article: newArticle })
