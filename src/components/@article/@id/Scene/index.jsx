@@ -2,7 +2,7 @@ import React from 'react'
 import { object } from 'prop-types'
 import { Card, CardContent, Typography, withStyles } from '@material-ui/core'
 import Article from './Article'
-import KeywordCard from './Article/KeywordCard'
+import KeywordCard from './KeywordCard'
 import connector from '../connector'
 
 const styles = {
@@ -27,16 +27,16 @@ class Scene extends React.Component {
     const newArticle = Object.assign({}, articleReducer.article)
     articleReducer.keywords.forEach((keyword) => {
       newArticle.text = newArticle.text.replace(
-        keyword.title,
-        `<span class="mark" onclick=alert("click")>${keyword.title}</span>`,
+        keyword.original,
+        `<span class="mark" onclick=alert("click")>${keyword.original}</span>`,
       )
     })
-    debugger
+
     this.setState({ article: newArticle })
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, articleReducer } = this.props
     const { article } = this.state
 
     return (
@@ -50,7 +50,7 @@ class Scene extends React.Component {
           <Typography variant="subheading" gutterBottom component="h3">
             Ключевые слова в статье:
           </Typography>
-          {article.keywords.map((keyword, index) =>
+          {articleReducer.keywords.map((keyword, index) =>
             <KeywordCard
               key={index}
               title={keyword.title}
@@ -65,7 +65,6 @@ class Scene extends React.Component {
 
 Scene.propTypes = {
   classes: object.isRequired,
-  actions: object.isRequired,
   articleReducer: object.isRequired,
 }
 

@@ -17,10 +17,9 @@ const styles = {
 }
 
 class ArticleScene extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     const { actions, articleReducer } = this.props
     actions.article.find(articleReducer._id)
-    // actions.article.find('5c01d0606bbcc5155e03c4c6')
   }
 
   render() {
