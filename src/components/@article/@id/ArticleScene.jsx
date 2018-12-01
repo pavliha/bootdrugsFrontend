@@ -1,4 +1,5 @@
 import React from 'react'
+import { isEmpty } from 'lodash'
 import { object } from 'prop-types'
 import Loading from 'components/Loading'
 import { withStyles } from '@material-ui/core'
@@ -31,7 +32,7 @@ class ArticleScene extends React.Component {
 
     return (
       <div className={classes.root}>
-        {article.loaded ? <ArticlePage /> : <Loading />}
+        {(isEmpty(article) || article.loaded) ? <ArticlePage /> : <Loading />}
       </div>
     )
   }
