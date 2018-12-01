@@ -1,12 +1,9 @@
 import React from 'react'
 import { object } from 'prop-types'
-import { withStyles } from '@material-ui/core'
+import isEmpty from 'lodash/isEmpty'
 import Trends from './Trends'
+import Loading from '../Loading'
 import connector from './connector'
-
-const styles = {
-  root: {},
-}
 
 class TrendsScene extends React.Component {
   componentDidMount() {
@@ -15,19 +12,14 @@ class TrendsScene extends React.Component {
   }
 
   render() {
-    const { classes } = this.props
-
-    return (
-      <div className={classes.root}>
-        <Trends />
-      </div>
-    )
+    const { trendsReducer } = this.props
+    return (isEmpty(trendsReducer) || trendsReducer.loading) ? <Loading /> : <Trends />
   }
 }
 
 TrendsScene.propTypes = {
-  classes: object.isRequired,
+  trendsReducer: object.isRequired,
   actions: object.isRequired,
 }
 
-export default withStyles(styles)(connector(TrendsScene))
+export default connector(TrendsScene)

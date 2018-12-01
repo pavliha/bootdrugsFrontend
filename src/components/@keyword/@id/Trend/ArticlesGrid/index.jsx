@@ -1,6 +1,6 @@
 import React from 'react'
-import { object, array } from 'prop-types'
-import { withStyles, Card, Typography, CardContent } from '@material-ui/core'
+import { array, object } from 'prop-types'
+import { Card, CardContent, Typography, withStyles } from '@material-ui/core'
 import truncate from 'lodash/truncate'
 
 const styles = {

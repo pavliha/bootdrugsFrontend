@@ -4,6 +4,7 @@ import storage from 'redux-persist/lib/storage'
 import layoutReducer from './layout/reducer'
 import headerReducer from './header/reducer'
 import articleReducer from './article/reducer'
+import articleAllReducer from './article/reducerAll'
 import trendsReducer from './trends/reducer'
 import keywordReducer from './keyword/reducer'
 
@@ -15,6 +16,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   articleReducer,
+  articleAllReducer,
   trendsReducer,
   keywordReducer,
   layoutReducer,

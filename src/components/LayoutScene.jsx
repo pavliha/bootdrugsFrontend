@@ -8,7 +8,7 @@ import AnalyzeScene from 'components/@analyze/AnalyzeScene'
 import IndexScene from './IndexScene'
 import TrendsScene from './@trends/TrendsScene'
 import Background from './Background'
-import ArticleScene from './@article/@id/ArticleScene'
+import ArticleLayout from './@article/ArticleLayout'
 
 const LayoutScene = () =>
   <Background>
@@ -18,7 +18,7 @@ const LayoutScene = () =>
         <Route exact path="/" component={IndexScene} />
         <Route exact path="/analyze" component={AnalyzeScene} />
         <Route path="/trends" component={TrendsScene} />
-        <Route path="/article/:id" component={ArticleScene} />
+        <Route path="/article" component={ArticleLayout} />
         <Route path="/keyword/:id" component={TrendScene} />
       </Switch>
     </Container>
