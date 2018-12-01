@@ -30,9 +30,11 @@ class ArticleScene extends React.Component {
     const { classes, article } = this.props
 
 
+    if (isEmpty(article) || article.loading) return <Loading />
+
     return (
       <div className={classes.root}>
-        {(isEmpty(article) || article.loaded) ? <ArticlePage /> : <Loading />}
+        <ArticlePage />
       </div>
     )
   }
