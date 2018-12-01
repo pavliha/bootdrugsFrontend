@@ -13,14 +13,14 @@ const styles = {
   },
 }
 
-const IndexScene = ({ classes }) => (
+const AnalyzeScene = ({ classes }) => (
   <div className={classes.root}>
     <ArticleForm />
   </div>
 )
 
-IndexScene.propTypes = {
+AnalyzeScene.propTypes = {
   classes: object.isRequired,
 }
 
-export default withStyles(styles)(connector(IndexScene))
+export default withStyles(styles)(connector(AnalyzeScene))
