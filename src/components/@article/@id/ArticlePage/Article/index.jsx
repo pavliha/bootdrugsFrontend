@@ -1,5 +1,5 @@
 import React from 'react'
-import { object, node } from 'prop-types'
+import { node, object } from 'prop-types'
 import { Typography, withStyles } from '@material-ui/core'
 import Paper from '@material-ui/core/es/Paper/Paper'
 import Avatar from '@material-ui/core/es/Avatar/Avatar'

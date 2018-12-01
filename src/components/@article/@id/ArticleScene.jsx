@@ -1,15 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { Card, CardContent, withStyles } from '@material-ui/core'
-import articleRes from './text.json'
-import Article from './Article'
-import KeywordCard from './KeywordCard'
-import Typography from '@material-ui/core/es/Typography/Typography'
+import { object } from 'prop-types'
+import Loading from 'components/Loading'
+import { withStyles } from '@material-ui/core'
+import ArticlePage from './ArticlePage'
+import connector from './connector'
 
 const styles = {
   root: {
-    margin: 30,
+    margin: 15,
     display: 'flex',
+    height: '94%',
   },
   card: {},
   cards: {
@@ -18,55 +18,30 @@ const styles = {
   },
 }
 
-window.handleClick = function (event) {
-  console.log(event.target.innerHTML)
-}
 
 class ArticleScene extends React.Component {
-  state = {
-    article: {},
-  }
-
-  componentWillMount() {
-    const newArticle = Object.assign({}, articleRes)
-    newArticle.keywords.forEach((keyword) => {
-      newArticle.text = newArticle.text.replace(
-        keyword.title,
-        `<span class="mark" onclick="handleClick(event)">${keyword.title}</span>`,
-      )
-    })
-    this.setState({ article: newArticle })
+  componentDidMount() {
+    const { actions, match } = this.props
+    actions.article.find(match.params.id)
   }
 
   render() {
-    const { classes } = this.props
-    const { article } = this.state
+    const { classes, article } = this.props
+
+
     return (
       <div className={classes.root}>
-        <Card className={classes.card}>
-          <CardContent>
-            <Article title={article.title}>{article.text}</Article>
-          </CardContent>
-        </Card>
-        <div className={classes.cards}>
-          <Typography variant="subheading" gutterBottom component="h3">
-            Ключевые слова в статье:
-          </Typography>
-          {article.keywords.map((keyword, index) =>
-            <KeywordCard
-              key={index}
-              title={keyword.title}
-              avatar={keyword.avatar}
-              description={keyword.description}
-            />)}
-        </div>
+        {article.loaded ? <ArticlePage /> : <Loading />}
       </div>
     )
   }
 }
 
 ArticleScene.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: object.isRequired,
+  actions: object.isRequired,
+  article: object.isRequired,
+  match: object.isRequired,
 }
 
-export default withStyles(styles)(ArticleScene)
+export default withStyles(styles)(connector(ArticleScene))

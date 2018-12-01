@@ -8,7 +8,7 @@ import articleReducer from './article/reducer'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['articleReducer'],
+  whitelist: ['headerReducer'],
 }
 
 const reducers = combineReducers({
