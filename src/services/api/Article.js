@@ -2,7 +2,12 @@
 import Http from 'services/Http'
 
 class Article {
-  async create(form) {
+
+  find(_id) {
+    return Http.get(`/article/${_id}`)
+  }
+
+  create(form) {
     return Http.post('/analyzer', form)
   }
 }
