@@ -6,7 +6,6 @@ import connector from './connector'
 
 const styles = {
   root: {
-    margin: 30,
     display: 'flex',
   },
   card: {},
